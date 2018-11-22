@@ -8,7 +8,7 @@ import java.io.Closeable;
 import java.io.IOException;
 
 public class HttpManager {
-    private String Data;
+    private String data;
     private String APIkey;
     private String baseURL;
     private String resource;
@@ -27,10 +27,12 @@ public class HttpManager {
             CloseableHttpClient httpClient = HttpClients.createDefault ();
             HttpGet requestData = new HttpGet (baseURL + resource + APIkey);
             CloseableHttpResponse response = httpClient.execute (requestData);
-            Data = EntityUtils.toString (response.getEntity ());
+            data = EntityUtils.toString (response.getEntity ());
 
         } catch (IOException e) {
             e.printStackTrace ();
         }
     }
+
+    public String getData() {return data;}
 }
