@@ -2,3 +2,5 @@
 /README.md
 /target/
 /.idea/
+/resources/api_key.properties
+/.idea/compiler.xml
