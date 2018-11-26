@@ -1,6 +1,8 @@
 import com.jayway.jsonpath.JsonPath;
 import org.json.simple.JSONObject;
+import java.util.Collections;
 import java.util.List;
+
 
 public class LocationsDataParser {
 
@@ -8,6 +10,7 @@ public class LocationsDataParser {
     private JSONObject locationsJSON;
     private List<String> locationIdList;
     private List<String> locationNameList;
+    private List<String> listToSort;
 
     public LocationsDataParser(){
         HttpManager httpManager = new HttpManager();
@@ -31,24 +34,31 @@ public class LocationsDataParser {
         locationNameList = JsonPath.read (locationsJSON, "$.Locations.Location[*].name");
         return locationNameList;
     }
-    public int getLocationIdListSize(){
-        return locationIdList.size ();
-    }
-    public int getLocationNameListSize(){
-        return locationNameList.size ();
-    }
-    //Helpers
-    private String findIdInList(String id) {
-        return Integer.toString (locationIdList.indexOf(id));
-    }
+    public int getLocationIdListSize(){return locationIdList.size ();}
+
+    public int getLocationNameListSize(){return locationNameList.size ();}
 
     public String getLocationById(String id){
-        if (locationIdList.contains (id)) {
+        if (locationIdList.contains(id))
             return locationNameList.get(Integer.parseInt(findIdInList(id)));
-        }
         else
             return "invalid id";
     }
 
+    public String getIdByLocation(String name){
+        if(locationNameList.contains(name))
+            return locationIdList.get(Integer.parseInt(findNameInList(name)));
+        else
+            return "invalid name";
+    }
+
+    //Helpers
+    private String findIdInList(String id){
+        return Integer.toString (locationIdList.indexOf(id));
+    }
+
+    private String findNameInList(String name){
+        return Integer.toString (locationNameList.indexOf(name));
+    }
 }
 
