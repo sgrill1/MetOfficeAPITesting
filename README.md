@@ -2,7 +2,7 @@
 A second individual project to develop skills in probing an API.
 
 ## Project Aim
-To probe the Met Office API and perform data analysis.
+To probe the Met Office API, perform tests on the data and practice using JSON path.
 
 ## Pre-Requisities
 IntelliJ
