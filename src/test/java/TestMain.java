@@ -37,6 +37,11 @@ public class TestMain {
         }
 
         @Test
+        public void checkSearchByIdReturnsCorrectName(){
+            Assert.assertEquals ("Kinloss", locationsDataParser.getLocationById ("3066"));
+        }
+
+        @Test
         public void checkInvalidIds(){
             Assert.assertEquals ("invalid id", locationsDataParser.getLocationById("5"));
         }
