@@ -1,7 +1,5 @@
 import com.jayway.jsonpath.JsonPath;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 import java.util.List;
 
 public class LocationsDataParser {
@@ -39,5 +37,18 @@ public class LocationsDataParser {
     public int getLocationNameListSize(){
         return locationNameList.size ();
     }
+    //Helpers
+    private String findIdInList(String id) {
+        return Integer.toString (locationIdList.indexOf(id));
+    }
+
+    public String getLocationById(String id){
+        if (locationIdList.contains (id)) {
+            return locationNameList.get(Integer.parseInt(findIdInList(id)));
+        }
+        else
+            return "invalid id";
+    }
+
 }
 

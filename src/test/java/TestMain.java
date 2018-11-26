@@ -9,6 +9,7 @@ public class TestMain {
 
         private List<String> locationIdList;
         private List<String> locationNameList;
+        private LocationsDataParser locationsDataParser;
 
         @Before
         public void setup() {
@@ -17,23 +18,27 @@ public class TestMain {
             locationNameList = locationsDataParser.getAllLocationNames ();
         }
 
+        //JUnit Data Tests
         @Test
         public void checkNoNullIds(){
             for (String id: locationIdList) {
-                Assert.assertNotNull (id);
+                Assert.assertNotNull(id);
             }
         }
-
         @Test
         public void checkNoNullNames(){
             for (String name: locationNameList){
-                Assert.assertNotNull (name);
+                Assert.assertNotNull(name);
             }
+        }
+        @Test
+        public void checkSameNumberOfNamesAndIds(){
+            Assert.assertEquals (locationIdList.size(),locationNameList.size());
         }
 
         @Test
-        public void checkSameNumberOfNamesAndIds(){
-            Assert.assertEquals (locationIdList.size (),locationNameList.size ());
+        public void checkInvalidIds(){
+            Assert.assertEquals ("invalid id", locationsDataParser.getLocationById("5"));
         }
 }
 
